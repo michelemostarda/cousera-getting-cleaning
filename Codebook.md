@@ -2,18 +2,12 @@ Coursera - Getting and Cleaning Data P2P Project - Codebook
 ===========================================================
 
 This code book describes variables, data, and transformations performed to
-clean the [Samsung accelerometer data](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones),
-to extract mean and standard deviation measurements.
-
-To extract the mean and standard deviation features the following regex was applied:
-````
--(mean|std)[(] 
-````
+clean the [Samsung accelerometer data](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) provided by the project, with purpose to extract mean and standard deviation measurements.
 
 ## Input data sets
 
 Both the training and test data contain 68 variables:
-- subject - identifier for the subject who executed the experiment
+- subject - identifier for the human subject who executed the experiment
 - label - label describing the type of activity
 - 66 additional variables described below
 
@@ -50,6 +44,11 @@ These signals were used to estimate variables of the feature vector for each pat
 The mean and standard deviation were estimated from these signals.
 
 ## Tidy data set
+
+To extract the mean and standard deviation features the following regex was applied:
+````
+-(mean|std)[(] 
+````
 
 Tidy data set contains the same variables as the merged data with renamed variables:
 - dashes and parentheses removed from variable names
