@@ -4,6 +4,7 @@
 
 # load required librares
 library(reshape2)
+library(data.table)
 
 runAnalysis <- function() {
 
@@ -64,6 +65,14 @@ combined$activity <- factor(combined$activity, labels=c("WALKING", "WALKING_UPST
 # Creates the tidy data set
 melted <- melt(combined, id=c("subjectID","activity"))
 tidy <- dcast(melted, subjectID+activity ~ variable, mean)
+
+# Cleanup names removing ()- and introducing camel cases
+names <- names(tidy)
+names <- gsub('-mean', 'Mean', names) 
+names <- gsub('-std', 'Std', names) 
+names <- gsub('BodyBody', 'Body', names) 
+names <- gsub('[()-]', '', names) 
+setnames(tidy, names)
 
 # write the tidy data set to a file
 write.csv(tidy, "tidy.csv", row.names=FALSE)
